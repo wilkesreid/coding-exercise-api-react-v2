@@ -60,6 +60,8 @@ id, group_name
   - `cp .env.example .env`
   - Edit .env with your mysql connection information: the following steps connect to local mysql database using root credentials
   - `composer install && php artisan key:generate && php artisan migrate`
+- Setup React
+  - `yarn`
 - Start the Laravel API in one Terminal Window: `php artisan serve`
 - Start the React/Node.js server in another Terminal Window: `yarn start`
 
@@ -79,6 +81,8 @@ You will need to determine the type of data in the CSV file based on the headers
 ### Testing
 
 We love TDD! So we’d love to see tests for the API and ReactJS application. Write automated tests to verify your results and account for gotchas (handling different column orders, invalid id's in the People CSV file, etc..). Classify your tests as either unit, integration, ui, or acceptance, but it is not required to use every type.
+
+UI tests can be run with `yarn test`
 
 ## Finally
 
