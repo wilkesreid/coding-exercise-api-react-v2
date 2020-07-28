@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Container, Header } from "semantic-ui-react";
 
 import ResultsList from "./ResultsList";
+import GroupList from "./GroupList";
 
 const App = ({ children }) => (
   <Container style={{ margin: 20 }}>
@@ -20,6 +21,7 @@ document.head.appendChild(styleLink);
 ReactDOM.render(
   <App>
     <ResultsList />
+    <GroupList />
   </App>,
   document.getElementById("root")
 );
