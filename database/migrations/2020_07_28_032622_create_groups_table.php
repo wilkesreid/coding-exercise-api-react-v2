@@ -20,7 +20,10 @@ class CreateGroupsTable extends Migration
         });
 
         Schema::table('people', function (Blueprint $table) {
-            $table->foreignId('group_id')->after('status')->constrained();
+            $table->foreignId('group_id')
+                ->nullable()
+                ->after('status')
+                ->constrained();
         });
     }
 
