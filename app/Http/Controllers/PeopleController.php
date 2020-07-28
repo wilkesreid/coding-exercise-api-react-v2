@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
+
 
 use App\Http\Resources\PeopleCollection;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\PersonResource;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\PeopleImport;
 use App\Models\Person;
 
 class PeopleController extends Controller
@@ -101,6 +106,18 @@ class PeopleController extends Controller
     {
         $person = Person::findOrFail($id);
         $person->delete();
+
+        return response()->json(null, 204);
+    }
+
+    public function batchStore(Request $request)
+    {
+        $uuid = Str::uuid();
+        $path = $request->file('csv')->storeAs('imports/people', $uuid . '.csv');
+
+        Excel::import(new PeopleImport, $path);
+
+        Storage::delete($path);
 
         return response()->json(null, 204);
     }

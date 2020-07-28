@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Table } from 'semantic-ui-react'
+import CsvImporter from "./CsvImporter";
 
 class ResultsList extends Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class ResultsList extends Component {
         var data = this.state.data || [];
 
         return (
+          <div>
             <Table celled padded>
               <Table.Header>
                 <Table.Row>
@@ -44,6 +46,16 @@ class ResultsList extends Component {
 
               </Table.Body>
             </Table>
+            <CsvImporter finished={() => {
+              fetch("http://localhost:8000/api/people")
+                .then(resp => resp.json())
+                .then(data => {
+                  this.setState({
+                    data: data.data,
+                  });
+                });
+            }} />
+          </div>
     );
 }
 

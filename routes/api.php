@@ -13,5 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::post('people/batch', 'PeopleController@batchStore');
 Route::resource('people', 'PeopleController');
+
 Route::resource('groups', 'GroupController');
