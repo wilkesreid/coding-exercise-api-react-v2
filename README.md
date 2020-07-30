@@ -2,8 +2,6 @@
 
 Hello, Sam Reid!
 
-Checkpoint.
-
 Below is a coding exercise that we believe will allow you to show off your amazing development skills!
 
 We’re super excited to see what you come up with!
