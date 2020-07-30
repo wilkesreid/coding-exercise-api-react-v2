@@ -1,74 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ResultsList /> should match the snapshot 1`] = `
-<Table
-  as="table"
-  celled={true}
-  padded={true}
->
-  <TableHeader
-    as="thead"
+<div>
+  <Table
+    as="table"
+    celled={true}
+    padded={true}
   >
-    <TableRow
-      as="tr"
-      cellAs="td"
+    <TableHeader
+      as="thead"
     >
-      <TableHeaderCell
-        as="th"
-        singleLine={true}
+      <TableRow
+        as="tr"
+        cellAs="td"
       >
-        First Name
-      </TableHeaderCell>
-      <TableHeaderCell
-        as="th"
-      >
-        Last Name
-      </TableHeaderCell>
-      <TableHeaderCell
-        as="th"
-      >
-        Email
-      </TableHeaderCell>
-      <TableHeaderCell
-        as="th"
-      >
-        Status
-      </TableHeaderCell>
-    </TableRow>
-  </TableHeader>
-  <TableBody
-    as="tbody"
-  >
-    <TableRow
-      as="tr"
-      cellAs="td"
-      key="0"
+        <TableHeaderCell
+          as="th"
+          onClick={[Function]}
+          singleLine={true}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          First Name
+        </TableHeaderCell>
+        <TableHeaderCell
+          as="th"
+          onClick={[Function]}
+        >
+          Last Name
+        </TableHeaderCell>
+        <TableHeaderCell
+          as="th"
+          onClick={[Function]}
+        >
+          Email
+        </TableHeaderCell>
+        <TableHeaderCell
+          as="th"
+          onClick={[Function]}
+        >
+          Status
+        </TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody
+      as="tbody"
     >
-      <TableCell
-        as="td"
-        singleLine={true}
+      <TableRow
+        as="tr"
+        cellAs="td"
+        key="0"
       >
-        Macie
-      </TableCell>
-      <TableCell
-        as="td"
-        singleLine={true}
-      >
-        Emmerich
-      </TableCell>
-      <TableCell
-        as="td"
-        singleLine={true}
-      >
-        cremin.marjory@hotmail.com
-      </TableCell>
-      <TableCell
-        as="td"
-        singleLine={true}
-      >
-        active
-      </TableCell>
-    </TableRow>
-  </TableBody>
-</Table>
+        <TableCell
+          as="td"
+          singleLine={true}
+        >
+          Macie
+        </TableCell>
+        <TableCell
+          as="td"
+          singleLine={true}
+        >
+          Emmerich
+        </TableCell>
+        <TableCell
+          as="td"
+          singleLine={true}
+        >
+          cremin.marjory@hotmail.com
+        </TableCell>
+        <TableCell
+          as="td"
+          singleLine={true}
+        >
+          active
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+  <CsvImporter
+    error={[Function]}
+    finished={[Function]}
+    model="people"
+  />
+</div>
 `;
