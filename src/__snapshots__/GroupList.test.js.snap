@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GroupList /> should match the snapshot 1`] = `
+<div>
+  <Table
+    as="table"
+  >
+    <TableHeader
+      as="thead"
+    >
+      <TableRow
+        as="tr"
+        cellAs="td"
+      >
+        <TableHeaderCell
+          as="th"
+          onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          Group Name
+        </TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody
+      as="tbody"
+    >
+      <TableRow
+        as="tr"
+        cellAs="td"
+        key="132"
+      >
+        <TableCell
+          as="td"
+        >
+          Developers
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+  <CsvImporter
+    error={[Function]}
+    finished={[Function]}
+    model="groups"
+  />
+</div>
+`;
+
+exports[`<ResultsList /> should match the snapshot 1`] = `
+<div>
+  <Table
+    as="table"
+    celled={true}
+    padded={true}
+  >
+    <TableHeader
+      as="thead"
+    >
+      <TableRow
+        as="tr"
+        cellAs="td"
+      >
+        <TableHeaderCell
+          as="th"
+          onClick={[Function]}
+          singleLine={true}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          First Name
+        </TableHeaderCell>
+        <TableHeaderCell
+          as="th"
+          onClick={[Function]}
+        >
+          Last Name
+        </TableHeaderCell>
+        <TableHeaderCell
+          as="th"
+          onClick={[Function]}
+        >
+          Email
+        </TableHeaderCell>
+        <TableHeaderCell
+          as="th"
+          onClick={[Function]}
+        >
+          Status
+        </TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody
+      as="tbody"
+    >
+      <TableRow
+        as="tr"
+        cellAs="td"
+        key="0"
+      >
+        <TableCell
+          as="td"
+          singleLine={true}
+        >
+          Macie
+        </TableCell>
+        <TableCell
+          as="td"
+          singleLine={true}
+        >
+          Emmerich
+        </TableCell>
+        <TableCell
+          as="td"
+          singleLine={true}
+        >
+          cremin.marjory@hotmail.com
+        </TableCell>
+        <TableCell
+          as="td"
+          singleLine={true}
+        >
+          active
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+  <CsvImporter
+    error={[Function]}
+    finished={[Function]}
+    model="people"
+  />
+</div>
+`;
