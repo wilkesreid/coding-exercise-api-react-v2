@@ -75,14 +75,19 @@ class GroupList extends Component {
                             Group Name
                             {this.isSortingBy('group_name') && <ColumnIcon direction={this.state.sortDirection} />}
                         </Table.HeaderCell>
+                        <Table.HeaderCell onClick={() => this.sortBy('people')} style={{cursor: 'pointer'}}>
+                            People
+                            {this.isSortingBy('people') && <ColumnIcon direction={this.state.sortDirection} />}
+                        </Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
                 <Table.Body>
                     {
-                        items.map(({id, group_name}) => (
+                        items.map(({id, group_name, people}) => (
                             <Table.Row key={id}>
                                 <Table.Cell>{ group_name }</Table.Cell>
+                                <Table.Cell>{ people }</Table.Cell>
                             </Table.Row>
                         ))
                     }
