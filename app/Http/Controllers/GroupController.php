@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use App\Http\Resources\GroupCollection;
 use App\Http\Resources\GroupResource;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\GroupImport;
 use App\Models\Group;
 
 class GroupController extends Controller
@@ -99,6 +103,25 @@ class GroupController extends Controller
         Group::findOrFail($id)
             ->delete();
         
+        return response()->json(null, 204);
+    }
+
+    public function batchStore(Request $request)
+    {
+        $uuid = Str::uuid();
+        $path = $request->file('csv')->storeAs('imports/groups', $uuid . '.csv');
+
+        try {
+            Excel::import(new GroupImport, $path);
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            unlink(storage_path('app/'.$path));
+            return response(implode(' | ', array_map(function($failure) {
+                return implode(' – ', $failure->errors());
+            }, $e->failures())), 400);
+        }
+
+        unlink(storage_path('app/'.$path));
+
         return response()->json(null, 204);
     }
 }

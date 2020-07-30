@@ -1,11 +1,25 @@
 import React, { Component } from 'react'
 import { Table } from 'semantic-ui-react'
+import _sortBy from 'lodash/sortBy';
+import _reverse from 'lodash/reverse';
 import CsvImporter from "./CsvImporter";
+import ColumnIcon from './ColumnIcon';
+
+const sortingMethods = {
+  first_name: item => item.first_name.toLowerCase(),
+  last_name: item => item.last_name.toLowerCase(),
+  email_address: item => item.email_address.toLowerCase(),
+  status: item => item.status.toLowerCase()
+};
 
 class ResultsList extends Component {
     constructor(props) {
         super(props);
-        this.state = { data: [] };
+        this.state = {
+          data: [],
+          sortColumn: null,
+          sortDirection: null,
+        };
     }
 
     componentDidMount() {
@@ -14,18 +28,66 @@ class ResultsList extends Component {
           .then(data => this.setState({ data: data.data }));
     }
 
+    sortedItems() {
+      if (this.state.sortColumn === null) {
+          return this.state.data;
+      }
+
+      if (this.state.sortDirection === 'asc') {
+          return _sortBy(this.state.data, sortingMethods[this.state.sortColumn]);
+      }
+
+      return _reverse(_sortBy(this.state.data, sortingMethods[this.state.sortColumn]));
+  }
+
+  isSortingBy(column) {
+      return this.state.sortColumn === column;
+  }
+
+  sortBy(column) {
+      if (this.state.sortColumn === column) {
+          if (this.state.sortDirection === 'asc') {
+              this.setState({
+                  sortDirection: 'desc'
+              });
+          } else {
+              this.setState({
+                  sortColumn: null,
+                  sortDirection: null
+              });
+          }
+      } else {
+          this.setState({
+              sortColumn: column,
+              sortDirection: 'asc'
+          });
+      }
+  }
+
     render() {
-        var data = this.state.data || [];
+        var data = this.sortedItems();
 
         return (
           <div>
             <Table celled padded>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell singleLine>First Name</Table.HeaderCell>
-                  <Table.HeaderCell>Last Name</Table.HeaderCell>
-                  <Table.HeaderCell>Email</Table.HeaderCell>
-                  <Table.HeaderCell>Status</Table.HeaderCell>
+                  <Table.HeaderCell singleLine onClick={() => this.sortBy('first_name')} style={{cursor: 'pointer'}}>
+                    First Name
+                    {this.isSortingBy('first_name') && <ColumnIcon direction={this.state.sortDirection} style={{cursor: 'pointer'}} />}
+                  </Table.HeaderCell>
+                  <Table.HeaderCell onClick={() => this.sortBy('last_name')}>
+                    Last Name
+                    {this.isSortingBy('last_name') && <ColumnIcon direction={this.state.sortDirection} style={{cursor: 'pointer'}} />}
+                  </Table.HeaderCell>
+                  <Table.HeaderCell onClick={() => this.sortBy('email_address')}>
+                    Email
+                    {this.isSortingBy('email_address') && <ColumnIcon direction={this.state.sortDirection} style={{cursor: 'pointer'}} />}
+                  </Table.HeaderCell>
+                  <Table.HeaderCell onClick={() => this.sortBy('status')}>
+                    Status
+                    {this.isSortingBy('status') && <ColumnIcon direction={this.state.sortDirection} style={{cursor: 'pointer'}} />}
+                  </Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
 
@@ -46,15 +108,21 @@ class ResultsList extends Component {
 
               </Table.Body>
             </Table>
-            <CsvImporter finished={() => {
-              fetch("http://localhost:8000/api/people")
-                .then(resp => resp.json())
-                .then(data => {
-                  this.setState({
-                    data: data.data,
+            <CsvImporter
+              model="people" 
+              finished={() => {
+                fetch("http://localhost:8000/api/people")
+                  .then(resp => resp.json())
+                  .then(data => {
+                    this.setState({
+                      data: data.data,
+                    });
                   });
-                });
-            }} />
+              }}
+              error={(err) => {
+                console.log('error', err);
+              }}
+            />
           </div>
     );
 }

@@ -8,8 +8,8 @@ use Illuminate\Support\Str;
 
 
 use App\Http\Resources\PeopleCollection;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\PersonResource;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\PeopleImport;
 use App\Models\Person;
@@ -115,9 +115,16 @@ class PeopleController extends Controller
         $uuid = Str::uuid();
         $path = $request->file('csv')->storeAs('imports/people', $uuid . '.csv');
 
-        Excel::import(new PeopleImport, $path);
+        try {
+            Excel::import(new PeopleImport, $path);
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            unlink(storage_path('app/'.$path));
+            return response(implode(' | ', array_map(function($failure) {
+                return implode(' – ', $failure->errors());
+            }, $e->failures())), 400);
+        }
 
-        Storage::delete($path);
+        unlink(storage_path('app/'.$path));
 
         return response()->json(null, 204);
     }

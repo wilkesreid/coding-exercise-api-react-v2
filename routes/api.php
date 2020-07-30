@@ -16,4 +16,5 @@ use Illuminate\Http\Request;
 Route::post('people/batch', 'PeopleController@batchStore');
 Route::resource('people', 'PeopleController');
 
+Route::post('groups/batch', 'GroupController@batchStore');
 Route::resource('groups', 'GroupController');
