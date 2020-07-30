@@ -17,6 +17,16 @@ Here's a summary of what I have created in this exercise:
 * CSV importer button with loading spinner, error messages on failure, and fetching data to refresh table upon success
 * Wrote some basic unit tests for some of my React components
 
+## Steps to get running
+
+* composer install
+* create .env file
+* php artisan key:generate
+* php artisan migrate
+* php artisan serve
+* yarn
+* yarn start
+
 # Coding Exercise
 
 Hello, Sam Reid!
