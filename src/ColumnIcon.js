@@ -9,11 +9,11 @@ class ColumnIcon extends Component {
 
         if (this.props.direction === 'asc') {
             return (
-                <Icon name="angle down"></Icon>
+                <Icon name="angle up"></Icon>
             );
         } else {
             return (
-                <Icon name="angle up"></Icon>
+                <Icon name="angle down"></Icon>
             );
         }
     }
