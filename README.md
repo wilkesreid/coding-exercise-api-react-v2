@@ -1,3 +1,22 @@
+# Sam's Notes
+
+Hello, Breeze!
+
+Here's a summary of what I have created in this exercise:
+
+## API
+
+* Added groups table migration, model, resource, collection, and controller
+* Added people and groups importer according to the Laravel Excel package following its documentation
+* Added Eloquent relationships between Person and Group models
+
+## Front End (React)
+
+* Group table listing groups and associated people
+* Sortable columns (click the heading of a column to sort, click again to reverse sort, click a third time to remove sort)
+* CSV importer button with loading spinner, error messages on failure, and fetching data to refresh table upon success
+* Wrote some basic unit tests for some of my React components
+
 # Coding Exercise
 
 Hello, Sam Reid!
