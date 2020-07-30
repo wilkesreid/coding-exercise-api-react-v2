@@ -23,6 +23,17 @@ exports[`<GroupList /> should match the snapshot 1`] = `
         >
           Group Name
         </TableHeaderCell>
+        <TableHeaderCell
+          as="th"
+          onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          People
+        </TableHeaderCell>
       </TableRow>
     </TableHeader>
     <TableBody
@@ -38,6 +49,9 @@ exports[`<GroupList /> should match the snapshot 1`] = `
         >
           Developers
         </TableCell>
+        <TableCell
+          as="td"
+        />
       </TableRow>
     </TableBody>
   </Table>
